@@ -1,0 +1,48 @@
+{
+  "name": "resin-toolbox",
+  "version": "0.0.1",
+  "description": "",
+  "homepage": "https://github.com/resin-io-playground/resin-toolbox#readme",
+  "preferGlobal": true,
+  "keywords": [
+    "resin",
+    "resinos"
+  ],
+  "author": "Kostas Lekkas <kostas@resin.io>",
+  "license": "Apache-2.0",
+  "main": "./build/actions/index.js",
+  "bin": "./bin/resin-toolbox",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/resin-io-playground/resin-toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/resin-io-playground/resin-toolbox/issues"
+  },
+  "scripts": {
+    "lint": "resin-lint lib/ test/",
+    "prebuild": "npm run lint",
+    "build": "gulp build",
+    "pretest": "npm run build",
+    "test": "mocha test/*.coffee",
+    "prepublish": "npm run test"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.11.0",
+    "gulp": "^3.9.1",
+    "gulp-coffee": "^2.3.2",
+    "gulp-util": "^3.0.7",
+    "mocha": "^3.1.0",
+    "resin-lint": "^1.4.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "capitano": "^1.7.4",
+    "chalk": "^1.1.3",
+    "columnify": "^1.5.4",
+    "lodash": "^4.16.2",
+    "resin-cli-errors": "^1.2.0",
+    "resin-sync": "^4.1.0",
+    "update-notifier": "^1.0.2"
+  }
+}
