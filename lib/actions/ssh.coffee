@@ -80,10 +80,10 @@ module.exports =
 	action: (params, options, done) ->
 		child_process = require('child_process')
 		Promise = require 'bluebird'
+		Docker = require('docker-toolbelt')
 		_ = require('lodash')
 		form = require('resin-cli-form')
 		{ findAvahiDevices } = require('../utils/discover')
-		{ getContainerList } = require('../utils/docker')
 
 		if (options.host is true and options.container?)
 			throw new Error('Please pass either --host or --container option')
@@ -104,8 +104,10 @@ module.exports =
 							value: device.ip
 						}
 
-		selectContainerFromDevice = (deviceIp) ->
-			getContainerList(deviceIp)
+		selectContainerFromDevice = Promise.method (deviceIp) ->
+			docker = new Docker(host: deviceIp, port: 2375)
+
+			docker.listContainersAsync()
 			.then (containers) ->
 				if _.isEmpty(containers)
 					throw new Error("No containers are running in #{deviceIp}")
@@ -115,8 +117,8 @@ module.exports =
 					type: 'list'
 					choices: _.map containers, (container) ->
 						return {
-							name: "#{container.name or 'Untitled'} (#{container.id})"
-							value: container.name
+							name: "#{container.Names[0] or 'Untitled'} (#{container.Id})"
+							value: container.Id
 						}
 
 		if not options.port?
@@ -137,7 +139,7 @@ module.exports =
 				return selectContainerFromDevice(deviceIp)
 
 			return options.container
-		.then (containerName) ->
+		.then (container) ->
 
 			command = "ssh \
 				#{verbose} \
@@ -150,7 +152,7 @@ module.exports =
 				 root@#{options.deviceIp}"
 
 			if not options.host
-			 command += " docker exec -ti #{containerName} /bin/sh"
+			 command += " docker exec -ti #{container} /bin/sh"
 
 			subShellCommand = getSubShellCommand(command)
 			child_process.spawn subShellCommand.program, subShellCommand.args,
