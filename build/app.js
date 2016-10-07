@@ -43,6 +43,8 @@ capitano.command(actions.ssh);
 
 capitano.command(actions.sync);
 
+capitano.command(actions.configure);
+
 capitano.command(actions.version);
 
 capitano.command(actions.help.help);

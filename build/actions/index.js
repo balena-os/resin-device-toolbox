@@ -18,5 +18,6 @@ module.exports = {
   version: require('./version'),
   help: require('./help'),
   sync: require('./sync'),
-  ssh: require('./ssh')
+  ssh: require('./ssh'),
+  configure: require('./configure')
 };
