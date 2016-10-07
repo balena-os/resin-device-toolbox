@@ -20,3 +20,4 @@ module.exports =
 	sync: require('./sync')
 	ssh: require('./ssh')
 	configure: require('./configure')
+	flash: require('./flash')

@@ -38,6 +38,9 @@ capitano.command(actions.sync)
 # ---------- Configuration Module ----------
 capitano.command(actions.configure)
 
+# ---------- Flash Module ----------
+capitano.command(actions.flash)
+
 # ---------- Version Module ----------
 capitano.command(actions.version)
 
