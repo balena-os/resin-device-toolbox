@@ -83,26 +83,10 @@ module.exports =
 		Docker = require('docker-toolbelt')
 		_ = require('lodash')
 		form = require('resin-cli-form')
-		{ findAvahiDevices } = require('../utils/discover')
+		{ discover } = require('resin-sync')
 
 		if (options.host is true and options.container?)
 			throw new Error('Please pass either --host or --container option')
-
-		selectLocalResinOSDevice = ->
-			findAvahiDevices()
-			.then (devices) ->
-				if _.isEmpty(devices)
-					throw new Error('You don\'t have any local ResinOS devices')
-
-				return form.ask
-					message: 'Select a device'
-					type: 'list'
-					default: devices[0].ip
-					choices: _.map devices, (device) ->
-						return {
-							name: "#{device.name or 'Untitled'} (#{device.ip})"
-							value: device.ip
-						}
 
 		selectContainerFromDevice = Promise.method (deviceIp) ->
 			docker = new Docker(host: deviceIp, port: 2375)
@@ -128,7 +112,7 @@ module.exports =
 
 		Promise.try ->
 			if not params.deviceIp?
-				return selectLocalResinOSDevice()
+				return discover.selectLocalResinOsDeviceForm()
 			return params.deviceIp
 		.then (deviceIp) ->
 			_.assign(options, { deviceIp })
