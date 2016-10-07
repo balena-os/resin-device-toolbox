@@ -43,7 +43,7 @@
     "docker-toolbelt": "^1.1.0",
     "lodash": "^4.16.2",
     "resin-cli-errors": "^1.2.0",
-    "resin-sync": "^4.1.0",
+    "resin-sync": "^5.0.0",
     "update-notifier": "^1.0.2"
   }
 }
