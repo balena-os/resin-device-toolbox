@@ -11,7 +11,9 @@
   "author": "Kostas Lekkas <kostas@resin.io>",
   "license": "Apache-2.0",
   "main": "./build/actions/index.js",
-  "bin": "./bin/resin-toolbox",
+  "bin": {
+    "resin-toolbox": "./bin/resin-toolbox"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/resin-io-playground/resin-toolbox.git"
