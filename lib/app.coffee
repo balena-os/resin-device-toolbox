@@ -35,6 +35,9 @@ capitano.command(actions.ssh)
 # ---------- Sync Module ----------
 capitano.command(actions.sync)
 
+# ---------- Configuration Module ----------
+capitano.command(actions.configure)
+
 # ---------- Version Module ----------
 capitano.command(actions.version)
 
