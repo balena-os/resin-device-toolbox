@@ -31,9 +31,9 @@ CONFIGURATION_SCHEMA = {
     {
       template: {
         hostname: '{{hostname}}',
-        'persistent-logging': '{{persistentLogging}}'
+        persistentLogging: '{{persistentLogging}}'
       },
-      domain: [['config_json', 'hostname'], ['config_json', 'persistent-logging']]
+      domain: [['config_json', 'hostname'], ['config_json', 'persistentLogging']]
     }, {
       template: {
         wifi: {

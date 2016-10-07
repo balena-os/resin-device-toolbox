@@ -25,10 +25,10 @@ CONFIGURATION_SCHEMA =
 		{
 			template:
 				hostname: '{{hostname}}'
-				'persistent-logging': '{{persistentLogging}}'
+				persistentLogging: '{{persistentLogging}}'
 			domain: [
 				[ 'config_json', 'hostname' ]
-				[ 'config_json', 'persistent-logging' ]
+				[ 'config_json', 'persistentLogging' ]
 			]
 		}
 		{
