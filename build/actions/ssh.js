@@ -62,34 +62,16 @@ module.exports = {
     }
   ],
   action: function(params, options, done) {
-    var Docker, Promise, _, child_process, findAvahiDevices, form, selectContainerFromDevice, selectLocalResinOSDevice, verbose;
+    var Docker, Promise, _, child_process, discover, form, selectContainerFromDevice, verbose;
     child_process = require('child_process');
     Promise = require('bluebird');
     Docker = require('docker-toolbelt');
     _ = require('lodash');
     form = require('resin-cli-form');
-    findAvahiDevices = require('../utils/discover').findAvahiDevices;
+    discover = require('resin-sync').discover;
     if (options.host === true && (options.container != null)) {
       throw new Error('Please pass either --host or --container option');
     }
-    selectLocalResinOSDevice = function() {
-      return findAvahiDevices().then(function(devices) {
-        if (_.isEmpty(devices)) {
-          throw new Error('You don\'t have any local ResinOS devices');
-        }
-        return form.ask({
-          message: 'Select a device',
-          type: 'list',
-          "default": devices[0].ip,
-          choices: _.map(devices, function(device) {
-            return {
-              name: (device.name || 'Untitled') + " (" + device.ip + ")",
-              value: device.ip
-            };
-          })
-        });
-      });
-    };
     selectContainerFromDevice = Promise.method(function(deviceIp) {
       var docker;
       docker = new Docker({
@@ -118,7 +100,7 @@ module.exports = {
     verbose = options.verbose ? '-vvv' : '';
     return Promise["try"](function() {
       if (params.deviceIp == null) {
-        return selectLocalResinOSDevice();
+        return discover.selectLocalResinOsDeviceForm();
       }
       return params.deviceIp;
     }).then(function(deviceIp) {
