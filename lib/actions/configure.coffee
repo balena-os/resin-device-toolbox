@@ -38,8 +38,8 @@ CONFIGURATION_SCHEMA =
 				'wifi-security':
 					psk: '{{networkKey}}'
 			domain: [
-				[ 'system_connections', 'resin-wifi', 'wifi' ]
-				[ 'system_connections', 'resin-wifi', 'wifi-security' ]
+				[ 'system_connections', 'resin-sample', 'wifi' ]
+				[ 'system_connections', 'resin-sample', 'wifi-security' ]
 			]
 		}
 	]

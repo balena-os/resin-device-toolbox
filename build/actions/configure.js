@@ -43,7 +43,7 @@ CONFIGURATION_SCHEMA = {
           psk: '{{networkKey}}'
         }
       },
-      domain: [['system_connections', 'resin-wifi', 'wifi'], ['system_connections', 'resin-wifi', 'wifi-security']]
+      domain: [['system_connections', 'resin-sample', 'wifi'], ['system_connections', 'resin-sample', 'wifi-security']]
     }
   ],
   files: {
