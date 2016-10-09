@@ -70,12 +70,12 @@ module.exports =
 			parameter: 'container'
 			default: null
 			description: 'name of container to access'
-			alias: 'h'
+			alias: 'c'
 	,
 			signature: 'port'
 			parameter: 'port'
 			description: 'ssh port number (default: 22222)'
-			alias: 'h'
+			alias: 'p'
 	]
 	action: (params, options, done) ->
 		child_process = require('child_process')
