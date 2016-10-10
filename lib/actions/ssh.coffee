@@ -80,30 +80,12 @@ module.exports =
 	action: (params, options, done) ->
 		child_process = require('child_process')
 		Promise = require 'bluebird'
-		Docker = require('docker-toolbelt')
 		_ = require('lodash')
-		form = require('resin-cli-form')
 		{ discover } = require('resin-sync')
+		{ common } = require('../utils')
 
 		if (options.host is true and options.container?)
 			throw new Error('Please pass either --host or --container option')
-
-		selectContainerFromDevice = Promise.method (deviceIp) ->
-			docker = new Docker(host: deviceIp, port: 2375)
-
-			docker.listContainersAsync()
-			.then (containers) ->
-				if _.isEmpty(containers)
-					throw new Error("No containers are running in #{deviceIp}")
-
-				return form.ask
-					message: 'Select a container'
-					type: 'list'
-					choices: _.map containers, (container) ->
-						return {
-							name: "#{container.Names[0] or 'Untitled'} (#{container.Id})"
-							value: container.Id
-						}
 
 		if not options.port?
 			options.port = 22222
@@ -120,7 +102,7 @@ module.exports =
 			return if options.host
 
 			if not options.container?
-				return selectContainerFromDevice(deviceIp)
+				return common.selectContainerFromDevice(deviceIp)
 
 			return options.container
 		.then (container) ->
