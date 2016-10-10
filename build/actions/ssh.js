@@ -62,38 +62,15 @@ module.exports = {
     }
   ],
   action: function(params, options, done) {
-    var Docker, Promise, _, child_process, discover, form, selectContainerFromDevice, verbose;
+    var Promise, _, child_process, common, discover, verbose;
     child_process = require('child_process');
     Promise = require('bluebird');
-    Docker = require('docker-toolbelt');
     _ = require('lodash');
-    form = require('resin-cli-form');
     discover = require('resin-sync').discover;
+    common = require('../utils').common;
     if (options.host === true && (options.container != null)) {
       throw new Error('Please pass either --host or --container option');
     }
-    selectContainerFromDevice = Promise.method(function(deviceIp) {
-      var docker;
-      docker = new Docker({
-        host: deviceIp,
-        port: 2375
-      });
-      return docker.listContainersAsync().then(function(containers) {
-        if (_.isEmpty(containers)) {
-          throw new Error("No containers are running in " + deviceIp);
-        }
-        return form.ask({
-          message: 'Select a container',
-          type: 'list',
-          choices: _.map(containers, function(container) {
-            return {
-              name: (container.Names[0] || 'Untitled') + " (" + container.Id + ")",
-              value: container.Id
-            };
-          })
-        });
-      });
-    });
     if (options.port == null) {
       options.port = 22222;
     }
@@ -111,7 +88,7 @@ module.exports = {
         return;
       }
       if (options.container == null) {
-        return selectContainerFromDevice(deviceIp);
+        return common.selectContainerFromDevice(deviceIp);
       }
       return options.container;
     }).then(function(container) {
