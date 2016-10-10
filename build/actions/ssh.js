@@ -47,7 +47,7 @@ module.exports = {
       signature: 'host',
       boolean: true,
       description: 'get a shell into the host OS',
-      alias: 'h'
+      alias: 's'
     }, {
       signature: 'container',
       parameter: 'container',
