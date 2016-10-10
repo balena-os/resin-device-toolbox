@@ -17,5 +17,6 @@ limitations under the License.
 module.exports = {
   update: require('./update'),
   errors: require('./errors'),
-  messages: require('./messages')
+  messages: require('./messages'),
+  common: require('./common')
 };

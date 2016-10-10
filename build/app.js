@@ -43,6 +43,8 @@ capitano.command(actions.ssh);
 
 capitano.command(actions.sync);
 
+capitano.command(actions.logs);
+
 capitano.command(actions.configure);
 
 capitano.command(actions.flash);

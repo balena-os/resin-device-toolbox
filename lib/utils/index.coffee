@@ -18,3 +18,4 @@ module.exports =
 	update: require('./update')
 	errors: require('./errors')
 	messages: require('./messages')
+	common: require('./common')
