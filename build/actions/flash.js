@@ -73,7 +73,7 @@ module.exports = {
       }
     }).then(function(answers) {
       if (answers.yes !== true) {
-        console.log(chalk.red.bold("Aborted image flash"));
+        console.log(chalk.red.bold('Aborted image flash'));
         process.exit(0);
       }
       return drivelist.listAsync().then(function(drives) {
