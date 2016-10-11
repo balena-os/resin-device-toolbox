@@ -72,7 +72,7 @@ module.exports =
 				yes: options.yes || undefined
 		.then (answers) ->
 			if answers.yes isnt true
-				console.log(chalk.red.bold("Aborted image flash"))
+				console.log(chalk.red.bold('Aborted image flash'))
 				process.exit(0)
 
 			drivelist.listAsync().then (drives) ->
