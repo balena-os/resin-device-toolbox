@@ -1,8 +1,8 @@
 {
-  "name": "resin-toolbox",
+  "name": "resin-device-toolbox",
   "version": "0.0.1",
   "description": "",
-  "homepage": "https://github.com/resin-io-playground/resin-toolbox#readme",
+  "homepage": "https://github.com/resin-os/resin-device-toolbox#readme",
   "preferGlobal": true,
   "keywords": [
     "resin",
@@ -12,14 +12,14 @@
   "license": "Apache-2.0",
   "main": "./build/actions/index.js",
   "bin": {
-    "rdt": "./bin/resin-toolbox"
+    "rdt": "./bin/resin-device-toolbox"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/resin-io-playground/resin-toolbox.git"
+    "url": "git+https://github.com/resin-os/resin-device-toolbox.git"
   },
   "bugs": {
-    "url": "https://github.com/resin-io-playground/resin-toolbox/issues"
+    "url": "https://github.com/resin-os/resin-device-toolbox/issues"
   },
   "scripts": {
     "lint": "resin-lint lib/ test/",
