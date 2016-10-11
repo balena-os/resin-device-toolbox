@@ -14,4 +14,4 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-exports.reachingOut = "If you need help, or just want to say hi, don't hesitate in reaching out at:\n\n	GitHub: \"https://github.com/resin-io-playground/resin-toolbox/issues/new\n	Gitter: https://gitter.im/resin-io/chat";
+exports.reachingOut = "If you need help, or just want to say hi, don't hesitate in reaching out at:\n\n	GitHub: https://github.com/resin-os/resin-device-toolbox/issues/new\n	Gitter: https://gitter.im/resin-io/chat";

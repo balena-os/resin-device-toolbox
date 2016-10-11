@@ -37,7 +37,7 @@ imageWrite = require('etcher-image-write');
 module.exports = {
   signature: 'flash <image>',
   description: 'Flash an image to a drive',
-  help: 'Use this command to flash a ResinOS image to a drive.\n\nExamples:\n\n	$ resin flash path/to/resinos.img\n	$ resin flash path/to/resinos.img --drive /dev/disk2\n	$ resin flash path/to/resinos.img --drive /dev/disk2 --yes',
+  help: 'Use this command to flash a ResinOS image to a drive.\n\nExamples:\n\n	$ rdt flash path/to/resinos.img\n	$ rdt flash path/to/resinos.img --drive /dev/disk2\n	$ rdt flash path/to/resinos.img --drive /dev/disk2 --yes',
   primary: true,
   options: [
     {

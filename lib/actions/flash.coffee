@@ -32,9 +32,9 @@ module.exports =
 
 		Examples:
 
-			$ resin flash path/to/resinos.img
-			$ resin flash path/to/resinos.img --drive /dev/disk2
-			$ resin flash path/to/resinos.img --drive /dev/disk2 --yes
+			$ rdt flash path/to/resinos.img
+			$ rdt flash path/to/resinos.img --drive /dev/disk2
+			$ rdt flash path/to/resinos.img --drive /dev/disk2 --yes
 	'''
 	primary: true
 	options: [

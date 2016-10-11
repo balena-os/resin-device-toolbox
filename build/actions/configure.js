@@ -72,7 +72,7 @@ CONFIGURATION_SCHEMA = {
 module.exports = {
   signature: 'configure <target>',
   description: '(Re)configure a ResinOS drive or image',
-  help: 'Use this command to configure or reconfigure a ResinOS drive or image.\n\nExamples:\n\n	$ resin configure /dev/sdc\n	$ resin configure path/to/image.img',
+  help: 'Use this command to configure or reconfigure a ResinOS drive or image.\n\nExamples:\n\n	$ rdt configure /dev/sdc\n	$ rdt configure path/to/image.img',
   primary: true,
   action: function(params, options, done) {
     return umount.isMountedAsync(params.target).then(function(isMounted) {

@@ -48,11 +48,11 @@ module.exports =
 
 		Examples:
 
-			$ resin ssh
-			$ resin ssh --host
-			$ resin ssh --container chaotic_water
-			$ resin ssh --container chaotic_water --port 22222
-			$ resin ssh --verbose
+			$ rdt ssh
+			$ rdt ssh --host
+			$ rdt ssh --container chaotic_water
+			$ rdt ssh --container chaotic_water --port 22222
+			$ rdt ssh --verbose
 	'''
 	primary: true
 	options: [
