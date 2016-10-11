@@ -66,8 +66,8 @@ module.exports =
 
 		Examples:
 
-			$ resin configure /dev/sdc
-			$ resin configure path/to/image.img
+			$ rdt configure /dev/sdc
+			$ rdt configure path/to/image.img
 	'''
 	primary: true
 	action: (params, options, done) ->

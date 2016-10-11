@@ -17,6 +17,6 @@ limitations under the License.
 exports.reachingOut = """
 		If you need help, or just want to say hi, don't hesitate in reaching out at:
 
-			GitHub: "https://github.com/resin-io-playground/resin-toolbox/issues/new
+			GitHub: https://github.com/resin-os/resin-device-toolbox/issues/new
 			Gitter: https://gitter.im/resin-io/chat
 """

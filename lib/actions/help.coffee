@@ -46,7 +46,7 @@ print = (data) ->
 		minWidth: 35
 
 general = (params, options, done) ->
-	console.log('Usage: resin-toolbox [COMMAND] [OPTIONS]\n')
+	console.log('Usage: rdt [COMMAND] [OPTIONS]\n')
 	console.log(messages.reachingOut)
 	console.log('\nPrimary commands:\n')
 
@@ -96,8 +96,8 @@ exports.help =
 
 		Examples:
 
-			$ resin-toolbox help ssh
-			$ resin-toolbox help ync
+			$ rdt help ssh
+			$ rdt help push
 	'''
 	primary: true
 	options: []
