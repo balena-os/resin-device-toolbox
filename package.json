@@ -12,7 +12,7 @@
   "license": "Apache-2.0",
   "main": "./build/actions/index.js",
   "bin": {
-    "resin-toolbox": "./bin/resin-toolbox"
+    "rdt": "./bin/resin-toolbox"
   },
   "repository": {
     "type": "git",
