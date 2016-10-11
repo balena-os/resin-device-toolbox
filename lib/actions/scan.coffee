@@ -1,0 +1,99 @@
+###
+Copyright 2016 Resin.io
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	 http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+###
+
+
+dockerInfoProperties = [
+	'Containers'
+	'ContainersRunning'
+	'ContainersPaused'
+	'ContainersStopped'
+	'Images'
+	'Driver'
+	'SystemTime'
+	'KernelVersion'
+	'OperatingSystem'
+	'Architecture'
+]
+
+dockerVersionProperties = [
+	'Version'
+	'ApiVersion'
+]
+
+module.exports =
+	signature: 'scan'
+	description: 'Scan for resinOS devices in your local network'
+	help: '''
+
+		Examples:
+
+			$ rdt scan
+			$ rdt scan --verbose
+	'''
+	primary: true
+	options: [
+		signature: 'verbose'
+		boolean: true
+		description: 'Display full info'
+		alias: 'v'
+	]
+	action: (params, options, done) ->
+		Promise = require('bluebird')
+		_ = require('lodash')
+		prettyjson = require('prettyjson')
+		Docker = require('docker-toolbelt')
+		{ discover } = require('resin-sync')
+		{ Spinner } = require('resin-cli-visuals')
+
+		# XXX: import this function from `resin-cli-visuals` when PR is merged
+		spinnerPromise = Promise.method (promise, startMsg, stopMsg) ->
+
+			clearSpinner = (spinner, msg) ->
+				spinner.stop() if spinner?
+				console.log(msg) if msg?
+
+			spinner = new Spinner(startMsg)
+			spinner.start()
+			promise.tap (value) ->
+				clearSpinner(spinner, stopMsg)
+			.catch (err) ->
+				clearSpinner(spinner)
+				throw err
+
+		Promise.try ->
+			spinnerPromise(
+				discover.discoverLocalResinOsDevices()
+				'Scanning for local resinOS devices..'
+				'Reporting scan results'
+			)
+		.tap (devices) ->
+			if _.isEmpty(devices)
+				throw new Error('Could not find any resinOS devices in the local network')
+		.map ({ host, address }) ->
+			docker = new Docker(host: address, port: 2375)
+			Promise.props
+				dockerInfo: docker.infoAsync().catchReturn('Could not get Docker info')
+				dockerVersion: docker.versionAsync().catchReturn('Could not get Docker version')
+			.then ({ dockerInfo, dockerVersion }) ->
+
+				if not options.verbose
+					dockerInfo = _.pick(dockerInfo, dockerInfoProperties) if _.isObject(dockerInfo)
+					dockerVersion = _.pick(dockerVersion, dockerVersionProperties) if _.isObject(dockerVersion)
+
+				return { host, address, dockerInfo, dockerVersion }
+		.then (devicesInfo) ->
+			console.log(prettyjson.render(devicesInfo, noColor: true))
+		.nodeify(done)
