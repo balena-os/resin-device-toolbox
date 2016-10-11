@@ -54,7 +54,7 @@ print = function(data) {
 
 general = function(params, options, done) {
   var commands, groupedCommands;
-  console.log('Usage: resin-toolbox [COMMAND] [OPTIONS]\n');
+  console.log('Usage: rdt [COMMAND] [OPTIONS]\n');
   console.log(messages.reachingOut);
   console.log('\nPrimary commands:\n');
   commands = _.reject(capitano.state.commands, function(command) {
@@ -99,7 +99,7 @@ command = function(params, options, done) {
 exports.help = {
   signature: 'help [command...]',
   description: 'Show help',
-  help: 'Get detailed help for an specific command.\n\nExamples:\n\n	$ resin-toolbox help ssh\n	$ resin-toolbox help ync',
+  help: 'Get detailed help for an specific command.\n\nExamples:\n\n	$ rdt help ssh\n	$ rdt help push',
   primary: true,
   options: [],
   action: function(params, options, done) {

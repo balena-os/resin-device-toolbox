@@ -18,7 +18,7 @@ module.exports = {
   signature: 'version',
   description: 'Output the version number',
   primary: true,
-  help: 'Display the resin-toolbox version.',
+  help: 'Display rdt version.',
   action: function(params, options, done) {
     var packageJSON;
     packageJSON = require('../../package.json');
