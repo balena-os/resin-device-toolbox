@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-var Promise, _, drivelist, form, fs, imageWrite, os, umount, visuals;
+var Promise, _, chalk, drivelist, form, fs, imageWrite, os, umount, visuals;
 
 _ = require('lodash');
 
@@ -27,6 +27,8 @@ umount = Promise.promisifyAll(require('umount'));
 fs = Promise.promisifyAll(require('fs'));
 
 drivelist = Promise.promisifyAll(require('drivelist'));
+
+chalk = require('chalk');
 
 visuals = require('resin-cli-visuals');
 
@@ -70,6 +72,10 @@ module.exports = {
         yes: options.yes || void 0
       }
     }).then(function(answers) {
+      if (answers.yes !== true) {
+        console.log(chalk.red.bold("Aborted image flash"));
+        process.exit(0);
+      }
       return drivelist.listAsync().then(function(drives) {
         var selectedDrive;
         selectedDrive = _.find(drives, {

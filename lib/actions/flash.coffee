@@ -20,6 +20,7 @@ Promise = require('bluebird')
 umount = Promise.promisifyAll(require('umount'))
 fs = Promise.promisifyAll(require('fs'))
 drivelist = Promise.promisifyAll(require('drivelist'))
+chalk = require('chalk')
 visuals = require('resin-cli-visuals')
 form = require('resin-cli-form')
 imageWrite = require('etcher-image-write')
@@ -70,6 +71,10 @@ module.exports =
 				# `false` is a defined value.
 				yes: options.yes || undefined
 		.then (answers) ->
+			if answers.yes isnt true
+				console.log(chalk.red.bold("Aborted image flash"))
+				process.exit(0)
+
 			drivelist.listAsync().then (drives) ->
 				selectedDrive = _.find(drives, device: answers.drive)
 
@@ -110,4 +115,3 @@ module.exports =
 
 				return umount.umountAsync(selectedDrive.device)
 		.asCallback(done)
-
