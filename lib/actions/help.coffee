@@ -92,7 +92,7 @@ exports.help =
 	signature: 'help [command...]'
 	description: 'Show help'
 	help: '''
-		Get detailed help for an specific command.
+		Get detailed help for a specific command.
 
 		Examples:
 
