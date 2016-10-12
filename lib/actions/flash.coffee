@@ -53,7 +53,7 @@ module.exports =
 		# XXX: Find a better ES6 module loading story/contract between resin.io modules
 		require('babel-register')({
 			only: /etcher-image-write|bmapflash/
-			presets: ["es2015"]
+			presets: ['es2015']
 		})
 		imageWrite = require('etcher-image-write')
 
