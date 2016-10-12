@@ -27,11 +27,11 @@ module.exports =
 
 		Examples:
 
-			$ rtb logs
-			$ rtb logs -f
-			$ rtb logs 192.168.1.10
-			$ rtb logs 192.168.1.10 -f
-			$ rtb logs 192.168.1.10 -f --app-name myapp
+			$ rdt logs
+			$ rdt logs -f
+			$ rdt logs 192.168.1.10
+			$ rdt logs 192.168.1.10 -f
+			$ rdt logs 192.168.1.10 -f --app-name myapp
 	'''
 	primary: true
 	options: [
