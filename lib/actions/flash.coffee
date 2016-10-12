@@ -23,7 +23,6 @@ drivelist = Promise.promisifyAll(require('drivelist'))
 chalk = require('chalk')
 visuals = require('resin-cli-visuals')
 form = require('resin-cli-form')
-imageWrite = require('etcher-image-write')
 
 module.exports =
 	signature: 'flash <image>'
@@ -50,6 +49,14 @@ module.exports =
 			alias: 'd'
 	]
 	action: (params, options, done) ->
+
+		# XXX: Find a better ES6 module loading story/contract between resin.io modules
+		require('babel-register')({
+			only: /etcher-image-write|bmapflash/
+			presets: ["es2015"]
+		})
+		imageWrite = require('etcher-image-write')
+
 		form.run [
 			{
 				message: 'Select drive'

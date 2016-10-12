@@ -14,7 +14,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-var Promise, _, chalk, drivelist, form, fs, imageWrite, os, umount, visuals;
+var Promise, _, chalk, drivelist, form, fs, os, umount, visuals;
 
 _ = require('lodash');
 
@@ -33,8 +33,6 @@ chalk = require('chalk');
 visuals = require('resin-cli-visuals');
 
 form = require('resin-cli-form');
-
-imageWrite = require('etcher-image-write');
 
 module.exports = {
   signature: 'flash <image>',
@@ -55,6 +53,12 @@ module.exports = {
     }
   ],
   action: function(params, options, done) {
+    var imageWrite;
+    require('babel-register')({
+      only: /etcher-image-write|bmapflash/,
+      presets: ["es2015"]
+    });
+    imageWrite = require('etcher-image-write');
     return form.run([
       {
         message: 'Select drive',
