@@ -99,7 +99,7 @@ command = function(params, options, done) {
 exports.help = {
   signature: 'help [command...]',
   description: 'Show help',
-  help: 'Get detailed help for an specific command.\n\nExamples:\n\n	$ rdt help ssh\n	$ rdt help push',
+  help: 'Get detailed help for a specific command.\n\nExamples:\n\n	$ rdt help ssh\n	$ rdt help push',
   primary: true,
   options: [],
   action: function(params, options, done) {

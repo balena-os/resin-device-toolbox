@@ -43,9 +43,9 @@ If you need help, or just want to say hi, don't hesitate in reaching out at:
 Primary commands:
 
     ssh [deviceIp]                      Get a shell into a resinOS device
-    push [deviceIp]                     Push your changes to a container on local ResinOS device
-    logs [deviceIp]                     Get or attach to logs of a running container on a ResinOS device
-    configure <target>                  (Re)configure a ResinOS drive or image
+    push [deviceIp]                     Push your changes to a container on local resinOS device
+    logs [deviceIp]                     Get or attach to logs of a running container on a resinOS device
+    configure <target>                  (Re)configure a resinOS drive or image
     flash <image>                       Flash an image to a drive
     version                             Output the version number
     help [command...]                   Show help

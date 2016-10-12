@@ -28,7 +28,7 @@ module.exports =
 	signature: 'flash <image>'
 	description: 'Flash an image to a drive'
 	help: '''
-		Use this command to flash a ResinOS image to a drive.
+		Use this command to flash a resinOS image to a drive.
 
 		Examples:
 

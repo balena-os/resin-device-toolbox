@@ -16,8 +16,8 @@ limitations under the License.
  */
 module.exports = {
   signature: 'logs [deviceIp]',
-  description: 'Get or attach to logs of a running container on a ResinOS device',
-  help: '\nExamples:\n\n	$ rtb logs\n	$ rtb logs -f\n	$ rtb logs 192.168.1.10\n	$ rtb logs 192.168.1.10 -f\n	$ rtb logs 192.168.1.10 -f --app-name myapp',
+  description: 'Get or attach to logs of a running container on a resinOS device',
+  help: '\nExamples:\n\n	$ rdt logs\n	$ rdt logs -f\n	$ rdt logs 192.168.1.10\n	$ rdt logs 192.168.1.10 -f\n	$ rdt logs 192.168.1.10 -f --app-name myapp',
   primary: true,
   options: [
     {

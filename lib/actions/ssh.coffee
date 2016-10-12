@@ -42,7 +42,7 @@ module.exports =
 		Use this command to get a shell into the running application container of
 		your device.
 
-		The '--host' option will get you a shell into the Host OS of the ResinOS device.
+		The '--host' option will get you a shell into the Host OS of the resinOS device.
 		No option will return a list of containers to enter or you can explicitly select
 		one by passing its name to the --container option
 

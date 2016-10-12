@@ -35,7 +35,7 @@ getSubShellCommand = function(command) {
 module.exports = {
   signature: 'ssh [deviceIp]',
   description: 'Get a shell into a resinOS device',
-  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to get a shell into the running application container of\nyour device.\n\nThe \'--host\' option will get you a shell into the Host OS of the ResinOS device.\nNo option will return a list of containers to enter or you can explicitly select\none by passing its name to the --container option\n\nExamples:\n\n	$ rdt ssh\n	$ rdt ssh --host\n	$ rdt ssh --container chaotic_water\n	$ rdt ssh --container chaotic_water --port 22222\n	$ rdt ssh --verbose',
+  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to get a shell into the running application container of\nyour device.\n\nThe \'--host\' option will get you a shell into the Host OS of the resinOS device.\nNo option will return a list of containers to enter or you can explicitly select\none by passing its name to the --container option\n\nExamples:\n\n	$ rdt ssh\n	$ rdt ssh --host\n	$ rdt ssh --container chaotic_water\n	$ rdt ssh --container chaotic_water --port 22222\n	$ rdt ssh --verbose',
   primary: true,
   options: [
     {
