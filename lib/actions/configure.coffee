@@ -60,9 +60,9 @@ CONFIGURATION_SCHEMA =
 
 module.exports =
 	signature: 'configure <target>'
-	description: '(Re)configure a ResinOS drive or image'
+	description: '(Re)configure a resinOS drive or image'
 	help: '''
-		Use this command to configure or reconfigure a ResinOS drive or image.
+		Use this command to configure or reconfigure a resinOS drive or image.
 
 		Examples:
 

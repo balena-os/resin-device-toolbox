@@ -37,7 +37,7 @@ form = require('resin-cli-form');
 module.exports = {
   signature: 'flash <image>',
   description: 'Flash an image to a drive',
-  help: 'Use this command to flash a ResinOS image to a drive.\n\nExamples:\n\n	$ rdt flash path/to/resinos.img\n	$ rdt flash path/to/resinos.img --drive /dev/disk2\n	$ rdt flash path/to/resinos.img --drive /dev/disk2 --yes',
+  help: 'Use this command to flash a resinOS image to a drive.\n\nExamples:\n\n	$ rdt flash path/to/resinos.img\n	$ rdt flash path/to/resinos.img --drive /dev/disk2\n	$ rdt flash path/to/resinos.img --drive /dev/disk2 --yes',
   primary: true,
   options: [
     {
@@ -56,7 +56,7 @@ module.exports = {
     var imageWrite;
     require('babel-register')({
       only: /etcher-image-write|bmapflash/,
-      presets: ["es2015"]
+      presets: ['es2015']
     });
     imageWrite = require('etcher-image-write');
     return form.run([

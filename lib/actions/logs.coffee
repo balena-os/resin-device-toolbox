@@ -22,7 +22,7 @@ limitations under the License.
 #
 module.exports =
 	signature: 'logs [deviceIp]'
-	description: 'Get or attach to logs of a running container on a ResinOS device'
+	description: 'Get or attach to logs of a running container on a resinOS device'
 	help: '''
 
 		Examples:
