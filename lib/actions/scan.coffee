@@ -56,29 +56,13 @@ module.exports =
 		prettyjson = require('prettyjson')
 		Docker = require('docker-toolbelt')
 		{ discover } = require('resin-sync')
-		{ Spinner } = require('resin-cli-visuals')
-
-		# XXX: import this function from `resin-cli-visuals` when PR is merged
-		spinnerPromise = Promise.method (promise, startMsg, stopMsg) ->
-
-			clearSpinner = (spinner, msg) ->
-				spinner.stop() if spinner?
-				console.log(msg) if msg?
-
-			spinner = new Spinner(startMsg)
-			spinner.start()
-			promise.tap (value) ->
-				clearSpinner(spinner, stopMsg)
-			.catch (err) ->
-				clearSpinner(spinner)
-				throw err
+		{ SpinnerPromise } = require('resin-cli-visuals')
 
 		Promise.try ->
-			spinnerPromise(
-				discover.discoverLocalResinOsDevices()
-				'Scanning for local resinOS devices..'
-				'Reporting scan results'
-			)
+			new SpinnerPromise
+				promise: discover.discoverLocalResinOsDevices()
+				startMessage: 'Scanning for local resinOS devices..'
+				stopMessage: 'Reporting scan results'
 		.tap (devices) ->
 			if _.isEmpty(devices)
 				throw new Error('Could not find any resinOS devices in the local network')
