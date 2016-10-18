@@ -45,6 +45,8 @@ capitano.command(actions.sync);
 
 capitano.command(actions.logs);
 
+capitano.command(actions.scan);
+
 capitano.command(actions.configure);
 
 capitano.command(actions.flash);

@@ -20,6 +20,7 @@ module.exports = {
   sync: require('./sync'),
   ssh: require('./ssh'),
   logs: require('./logs'),
+  scan: require('./scan'),
   configure: require('./configure'),
   flash: require('./flash')
 };
