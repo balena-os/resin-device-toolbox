@@ -1,3 +1,9 @@
+# 0.0.4
+
+* Implement 'scan' command
+* Add missing package.json dependencies
+* Rename ResinOS -> resinOS
+
 # 0.0.3
 
 * flash: lazy-load ES6 modules with babel require hook
