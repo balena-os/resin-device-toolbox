@@ -9,28 +9,38 @@ module.exports =
 	selectContainerFromDevice: Promise.method (deviceIp) ->
 		docker = new Docker(host: deviceIp, port: 2375)
 
-		docker.listContainersAsync()
+		# List all containers, including those not running
+		docker.listContainersAsync(all: true)
 		.then (containers) ->
 			if _.isEmpty(containers)
-				throw new Error("No containers are running in #{deviceIp}")
+				throw new Error("No containers found in #{deviceIp}")
 
 			return form.ask
 				message: 'Select a container'
 				type: 'list'
 				choices: _.map containers, (container) ->
+					containerName = container.Names[0] or 'Untitled'
+					shortContainerId = ('' + container.Id).substr(0, 11)
+					containerStatus = container.Status
+
 					return {
-						name: "#{container.Names[0] or 'Untitled'} (#{container.Id})"
+						name: "#{containerName} (#{shortContainerId}) - #{containerStatus}"
 						value: container.Id
 					}
 
 	pipeContainerStream: Promise.method ({ deviceIp, name, outStream, follow = false }) ->
 		docker = new Docker(host: deviceIp, port: 2375)
 
-		docker.getContainer(name).attachAsync
-			logs: not follow
-			stream: follow
-			stdout: true
-			stderr: true
+		container = docker.getContainer(name)
+		container.inspectAsync()
+		.then (containerInfo) ->
+			return containerInfo?.State?.Running
+		.then (isRunning) ->
+			container.attachAsync
+				logs: not follow or not isRunning
+				stream: follow and isRunning
+				stdout: true
+				stderr: true
 		.then (containerStream) ->
 			containerStream.pipe(outStream)
 		.catch (err) ->
@@ -38,4 +48,3 @@ module.exports =
 			if err is '404'
 				return console.log(chalk.red.bold("Container '#{name}' not found."))
 			throw err
-
