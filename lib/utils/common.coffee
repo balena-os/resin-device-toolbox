@@ -31,11 +31,16 @@ module.exports =
 	pipeContainerStream: Promise.method ({ deviceIp, name, outStream, follow = false }) ->
 		docker = new Docker(host: deviceIp, port: 2375)
 
-		docker.getContainer(name).attachAsync
-			logs: not follow
-			stream: follow
-			stdout: true
-			stderr: true
+		container = docker.getContainer(name)
+		container.inspectAsync()
+		.then (containerInfo) ->
+			return containerInfo?.State?.Running
+		.then (isRunning) ->
+			container.attachAsync
+				logs: not follow or not isRunning
+				stream: follow and isRunning
+				stdout: true
+				stderr: true
 		.then (containerStream) ->
 			containerStream.pipe(outStream)
 		.catch (err) ->
@@ -43,4 +48,3 @@ module.exports =
 			if err is '404'
 				return console.log(chalk.red.bold("Container '#{name}' not found."))
 			throw err
-
