@@ -9,10 +9,11 @@ module.exports =
 	selectContainerFromDevice: Promise.method (deviceIp) ->
 		docker = new Docker(host: deviceIp, port: 2375)
 
-		docker.listContainersAsync()
+		# List all containers, including those not running
+		docker.listContainersAsync(all: true)
 		.then (containers) ->
 			if _.isEmpty(containers)
-				throw new Error("No containers are running in #{deviceIp}")
+				throw new Error("No containers found in #{deviceIp}")
 
 			return form.ask
 				message: 'Select a container'
