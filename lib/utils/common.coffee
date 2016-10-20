@@ -19,8 +19,12 @@ module.exports =
 				message: 'Select a container'
 				type: 'list'
 				choices: _.map containers, (container) ->
+					containerName = container.Names[0] or 'Untitled'
+					shortContainerId = ('' + container.Id).substr(0, 11)
+					containerStatus = container.Status
+
 					return {
-						name: "#{container.Names[0] or 'Untitled'} (#{container.Id})"
+						name: "#{containerName} (#{shortContainerId}) - #{containerStatus}"
 						value: container.Id
 					}
 
