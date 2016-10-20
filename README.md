@@ -45,6 +45,7 @@ Primary commands:
     ssh [deviceIp]                      Get a shell into a resinOS device
     push [deviceIp]                     Push your changes to a container on local resinOS device
     logs [deviceIp]                     Get or attach to logs of a running container on a resinOS device
+    scan                                Scan for resinOS devices in your local network
     configure <target>                  (Re)configure a resinOS drive or image
     flash <image>                       Flash an image to a drive
     version                             Output the version number
