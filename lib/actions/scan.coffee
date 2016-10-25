@@ -55,12 +55,12 @@ module.exports =
 		_ = require('lodash')
 		prettyjson = require('prettyjson')
 		Docker = require('docker-toolbelt')
-		{ discover } = require('resin-sync')
+		{ forms } = require('resin-sync')
 		{ SpinnerPromise } = require('resin-cli-visuals')
 
 		Promise.try ->
 			new SpinnerPromise
-				promise: discover.discoverLocalResinOsDevices()
+				promise: forms.discoverLocalResinOsDevices()
 				startMessage: 'Scanning for local resinOS devices..'
 				stopMessage: 'Reporting scan results'
 		.tap (devices) ->
