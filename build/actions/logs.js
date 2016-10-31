@@ -33,13 +33,13 @@ module.exports = {
     }
   ],
   action: function(params, options, done) {
-    var Promise, common, discover;
+    var Promise, common, forms;
     Promise = require('bluebird');
-    discover = require('resin-sync').discover;
+    forms = require('resin-sync').forms;
     common = require('../utils').common;
     return Promise["try"](function() {
       if (params.deviceIp == null) {
-        return discover.selectLocalResinOsDeviceForm();
+        return forms.selectLocalResinOsDevice();
       }
       return params.deviceIp;
     }).then((function(_this) {

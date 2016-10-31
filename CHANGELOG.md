@@ -1,3 +1,11 @@
+# 0.0.5
+
+* logs: follow if container is running, only print logs otherwise
+* logs: truncate long uuid and show container status in "logs"
+* logs: list all containers, including those not running
+* push: support environment variable setting
+* code refactoring
+
 # 0.0.4
 
 * Implement 'scan' command

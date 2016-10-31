@@ -62,11 +62,11 @@ module.exports = {
     }
   ],
   action: function(params, options, done) {
-    var Promise, _, child_process, common, discover, verbose;
+    var Promise, _, child_process, common, forms, verbose;
     child_process = require('child_process');
     Promise = require('bluebird');
     _ = require('lodash');
-    discover = require('resin-sync').discover;
+    forms = require('resin-sync').forms;
     common = require('../utils').common;
     if (options.host === true && (options.container != null)) {
       throw new Error('Please pass either --host or --container option');
@@ -77,7 +77,7 @@ module.exports = {
     verbose = options.verbose ? '-vvv' : '';
     return Promise["try"](function() {
       if (params.deviceIp == null) {
-        return discover.selectLocalResinOsDeviceForm();
+        return forms.selectLocalResinOsDevice();
       }
       return params.deviceIp;
     }).then(function(deviceIp) {
