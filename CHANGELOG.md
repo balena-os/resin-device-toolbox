@@ -1,3 +1,7 @@
+# 0.0.6
+
+* scan: fix missing discoverLocalResinOsDevices() method
+
 # 0.0.5
 
 * logs: follow if container is running, only print logs otherwise

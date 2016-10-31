@@ -34,16 +34,16 @@ module.exports = {
     }
   ],
   action: function(params, options, done) {
-    var Docker, Promise, SpinnerPromise, _, forms, prettyjson;
+    var Docker, Promise, SpinnerPromise, _, discover, prettyjson;
     Promise = require('bluebird');
     _ = require('lodash');
     prettyjson = require('prettyjson');
     Docker = require('docker-toolbelt');
-    forms = require('resin-sync').forms;
+    discover = require('resin-sync').discover;
     SpinnerPromise = require('resin-cli-visuals').SpinnerPromise;
     return Promise["try"](function() {
       return new SpinnerPromise({
-        promise: forms.discoverLocalResinOsDevices(),
+        promise: discover.discoverLocalResinOsDevices(),
         startMessage: 'Scanning for local resinOS devices..',
         stopMessage: 'Reporting scan results'
       });
