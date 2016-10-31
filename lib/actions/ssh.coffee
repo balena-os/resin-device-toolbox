@@ -81,7 +81,7 @@ module.exports =
 		child_process = require('child_process')
 		Promise = require 'bluebird'
 		_ = require('lodash')
-		{ discover } = require('resin-sync')
+		{ forms } = require('resin-sync')
 		{ common } = require('../utils')
 
 		if (options.host is true and options.container?)
@@ -94,7 +94,7 @@ module.exports =
 
 		Promise.try ->
 			if not params.deviceIp?
-				return discover.selectLocalResinOsDeviceForm()
+				return forms.selectLocalResinOsDevice()
 			return params.deviceIp
 		.then (deviceIp) ->
 			_.assign(options, { deviceIp })

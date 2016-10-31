@@ -47,12 +47,12 @@ module.exports =
 	]
 	action: (params, options, done) ->
 		Promise = require('bluebird')
-		{ discover } = require('resin-sync')
+		{ forms } = require('resin-sync')
 		{ common } = require('../utils')
 
 		Promise.try ->
 			if not params.deviceIp?
-				return discover.selectLocalResinOsDeviceForm()
+				return forms.selectLocalResinOsDevice()
 			return params.deviceIp
 		.then (@deviceIp) =>
 			if not options['app-name']?
