@@ -41,6 +41,7 @@ module.exports =
 		Examples:
 
 			$ rdt scan
+			$ rdt scan --timeout 120
 			$ rdt scan --verbose
 	'''
 	primary: true
@@ -49,6 +50,11 @@ module.exports =
 		boolean: true
 		description: 'Display full info'
 		alias: 'v'
+	,
+		signature: 'timeout'
+		parameter: 'timeout'
+		description: 'Scan timeout in seconds'
+		alias: 't'
 	]
 	action: (params, options, done) ->
 		Promise = require('bluebird')
@@ -58,9 +64,14 @@ module.exports =
 		{ discover } = require('resin-sync')
 		{ SpinnerPromise } = require('resin-cli-visuals')
 
+		if not options.timeout?
+			options.timeout = 4000
+		else
+			options.timeout *= 1000
+
 		Promise.try ->
 			new SpinnerPromise
-				promise: discover.discoverLocalResinOsDevices()
+				promise: discover.discoverLocalResinOsDevices(options.timeout)
 				startMessage: 'Scanning for local resinOS devices..'
 				stopMessage: 'Reporting scan results'
 		.tap (devices) ->

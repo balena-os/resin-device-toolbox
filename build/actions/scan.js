@@ -23,7 +23,7 @@ dockerVersionProperties = ['Version', 'ApiVersion'];
 module.exports = {
   signature: 'scan',
   description: 'Scan for resinOS devices in your local network',
-  help: '\nExamples:\n\n	$ rdt scan\n	$ rdt scan --verbose',
+  help: '\nExamples:\n\n	$ rdt scan\n	$ rdt scan --timeout 120\n	$ rdt scan --verbose',
   primary: true,
   options: [
     {
@@ -31,6 +31,11 @@ module.exports = {
       boolean: true,
       description: 'Display full info',
       alias: 'v'
+    }, {
+      signature: 'timeout',
+      parameter: 'timeout',
+      description: 'Scan timeout in seconds',
+      alias: 't'
     }
   ],
   action: function(params, options, done) {
@@ -41,9 +46,14 @@ module.exports = {
     Docker = require('docker-toolbelt');
     discover = require('resin-sync').discover;
     SpinnerPromise = require('resin-cli-visuals').SpinnerPromise;
+    if (options.timeout == null) {
+      options.timeout = 4000;
+    } else {
+      options.timeout *= 1000;
+    }
     return Promise["try"](function() {
       return new SpinnerPromise({
-        promise: discover.discoverLocalResinOsDevices(),
+        promise: discover.discoverLocalResinOsDevices(options.timeout),
         startMessage: 'Scanning for local resinOS devices..',
         stopMessage: 'Reporting scan results'
       });
