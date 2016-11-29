@@ -64,9 +64,7 @@ module.exports =
 		{ discover } = require('resin-sync')
 		{ SpinnerPromise } = require('resin-cli-visuals')
 
-		if not options.timeout?
-			options.timeout = 4000
-		else
+		if options.timeout?
 			options.timeout *= 1000
 
 		Promise.try ->
