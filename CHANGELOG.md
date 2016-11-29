@@ -1,3 +1,7 @@
+# 0.0.7
+
+* scan: add a '--timeout' parameter to 'scan' to allow for extended scan periods
+
 # 0.0.6
 
 * scan: fix missing discoverLocalResinOsDevices() method
