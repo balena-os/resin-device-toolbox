@@ -16,6 +16,9 @@ Click below to see a preview of `rdt push`
 * [rsync](https://download.samba.org/pub/rsync/rsync.html)
 * [ssh](http://www.openssh.com/)
 
+### Windows
+Please use a `bash`-compatible shell (e.g. Bash for Windows 10 or [`Git Bash`](https://git-for-windows.github.io/). `rdt` has not been tested on the standard Windows cmd shell.
+
 ## Install
 
 You can install Resin Device Toolbox by running:
