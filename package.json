@@ -47,6 +47,7 @@
     "capitano": "^1.7.4",
     "chalk": "^1.1.3",
     "columnify": "^1.5.4",
+    "denymount": "^2.2.0",
     "docker-toolbelt": "^1.1.0",
     "drivelist": "^3.3.4",
     "etcher-image-write": "^8.1.3",
