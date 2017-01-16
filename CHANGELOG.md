@@ -1,3 +1,7 @@
+# 0.0.8
+
+* Use denymount module to fix "Resource busy" error when configuring SD Card
+
 # 0.0.7
 
 * scan: add a '--timeout' parameter to 'scan' to allow for extended scan periods

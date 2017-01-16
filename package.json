@@ -1,6 +1,6 @@
 {
   "name": "resin-device-toolbox",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "The official Resin Device Toolbox CLI for resinOS",
   "homepage": "https://github.com/resin-os/resin-device-toolbox#readme",
   "preferGlobal": true,
