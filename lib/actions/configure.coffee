@@ -19,6 +19,7 @@ Promise = require('bluebird')
 umount = Promise.promisifyAll(require('umount'))
 inquirer = require('inquirer')
 reconfix = require('reconfix')
+denymount = Promise.promisify(require('denymount'))
 
 CONFIGURATION_SCHEMA =
 	mapper: [
@@ -75,51 +76,53 @@ module.exports =
 			return if not isMounted
 			umount.umountAsync(params.target)
 		.then ->
-			reconfix.readConfiguration(CONFIGURATION_SCHEMA, params.target).then (data) ->
+			denymount params.target, (cb) ->
+				reconfix.readConfiguration(CONFIGURATION_SCHEMA, params.target).then (data) ->
 
-				# `persistentLogging` can be `undefined`, so we want
-				# to make sure that case defaults to `false`
-				data.persistentLogging = data.persistentLogging or false
+					# `persistentLogging` can be `undefined`, so we want
+					# to make sure that case defaults to `false`
+					data.persistentLogging = data.persistentLogging or false
 
-				inquirer.prompt([
-					{
-						message: 'Network SSID'
-						type: 'input'
-						name: 'networkSsid'
-						default: data.networkSsid
-					}
-					{
-						message: 'Network Key'
-						type: 'input'
-						name: 'networkKey'
-						default: data.networkKey
-					}
-					{
-						message: 'Do you want to set advanced settings?'
-						type: 'confirm'
-						name: 'advancedSettings'
-						default: false
-					}
-					{
-						message: 'Device Hostname'
-						type: 'input'
-						name: 'hostname'
-						default: data.hostname,
-						when: (answers) ->
-							answers.advancedSettings
-					}
-					{
-						message: 'Do you want to enable persistent logging?'
-						type: 'confirm'
-						name: 'persistentLogging'
-						default: data.persistentLogging
-						when: (answers) ->
-							answers.advancedSettings
-					}
-				]).then (answers) ->
-					return _.merge(data, answers)
-		.then (answers) ->
-			reconfix.writeConfiguration(CONFIGURATION_SCHEMA, answers, params.target)
+					inquirer.prompt([
+						{
+							message: 'Network SSID'
+							type: 'input'
+							name: 'networkSsid'
+							default: data.networkSsid
+						}
+						{
+							message: 'Network Key'
+							type: 'input'
+							name: 'networkKey'
+							default: data.networkKey
+						}
+						{
+							message: 'Do you want to set advanced settings?'
+							type: 'confirm'
+							name: 'advancedSettings'
+							default: false
+						}
+						{
+							message: 'Device Hostname'
+							type: 'input'
+							name: 'hostname'
+							default: data.hostname,
+							when: (answers) ->
+								answers.advancedSettings
+						}
+						{
+							message: 'Do you want to enable persistent logging?'
+							type: 'confirm'
+							name: 'persistentLogging'
+							default: data.persistentLogging
+							when: (answers) ->
+								answers.advancedSettings
+						}
+					]).then (answers) ->
+						return _.merge(data, answers)
+				.then (answers) ->
+					reconfix.writeConfiguration(CONFIGURATION_SCHEMA, answers, params.target)
+				.asCallback(cb)
 		.then ->
 			console.log('Done!')
 		.asCallback(done)
