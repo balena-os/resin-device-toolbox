@@ -118,7 +118,8 @@ module.exports =
 				 root@#{options.deviceIp}"
 
 			if not options.host
-			 command += " docker exec -ti #{container} /bin/sh"
+				shellCmd = '''/bin/sh -c $"'if [ -e /bin/bash ]; then exec /bin/bash; else exec /bin/sh; fi'"'''
+				command += " docker exec -ti #{container} #{shellCmd}"
 
 			subShellCommand = getSubShellCommand(command)
 			child_process.spawn subShellCommand.program, subShellCommand.args,
