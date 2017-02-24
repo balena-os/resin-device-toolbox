@@ -1,3 +1,7 @@
+# 0.0.9
+
+* rdt ssh: default to /bin/bash if it exists
+
 # 0.0.8
 
 * Use denymount module to fix "Resource busy" error when configuring SD Card
