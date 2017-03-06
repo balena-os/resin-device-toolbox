@@ -1,3 +1,5 @@
+* rdt promote: implement command
+
 # 0.0.9
 
 * rdt ssh: default to /bin/bash if it exists

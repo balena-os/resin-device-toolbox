@@ -48,3 +48,22 @@ module.exports =
 			if err is '404'
 				return console.log(chalk.red.bold("Container '#{name}' not found."))
 			throw err
+
+	# A function to reliably execute a command
+	# in all supported operating systems, including
+	# different Windows environments like `cmd.exe`
+	# and `Cygwin` should be encapsulated in a
+	# re-usable package.
+	getSubShellCommand: (command) ->
+		os = require('os')
+
+		if os.platform() is 'win32'
+			return {
+				program: 'cmd.exe'
+				args: [ '/s', '/c', command ]
+			}
+		else
+			return {
+				program: '/bin/sh'
+				args: [ '-c', command ]
+			}
