@@ -18,9 +18,21 @@ limitations under the License.
 module.exports = {
   signature: 'promote [deviceIp]',
   description: 'Promote a resinOS device',
-  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to promote your device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222',
+  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to promote your device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222\n	$ rdt promote --verbose',
   primary: true,
-  options: [],
+  options: [
+    {
+      signature: 'verbose',
+      boolean: true,
+      description: 'increase verbosity',
+      alias: 'v'
+    }, {
+      signature: 'port',
+      parameter: 'port',
+      description: 'ssh port number (default: 22222)',
+      alias: 'p'
+    }
+  ],
   action: function(params, options, done) {
     var Promise, _, child_process, common, forms, verbose;
     child_process = require('child_process');

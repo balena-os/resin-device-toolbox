@@ -26,9 +26,20 @@ module.exports =
 
 			$ rdt promote
 			$ rdt promote --port 22222
+			$ rdt promote --verbose
 	'''
 	primary: true
-	options: []
+	options: [
+				signature: 'verbose'
+				boolean: true
+				description: 'increase verbosity'
+				alias: 'v'
+		,
+				signature: 'port'
+				parameter: 'port'
+				description: 'ssh port number (default: 22222)'
+				alias: 'p'
+		]
 	action: (params, options, done) ->
 		child_process = require('child_process')
 		Promise = require 'bluebird'
