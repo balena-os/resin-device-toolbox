@@ -14,25 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ###
 
-# A function to reliably execute a command
-# in all supported operating systems, including
-# different Windows environments like `cmd.exe`
-# and `Cygwin` should be encapsulated in a
-# re-usable package.
-getSubShellCommand = (command) ->
-	os = require('os')
-
-	if os.platform() is 'win32'
-		return {
-			program: 'cmd.exe'
-			args: [ '/s', '/c', command ]
-		}
-	else
-		return {
-			program: '/bin/sh'
-			args: [ '-c', command ]
-		}
-
 module.exports =
 	signature: 'promote [deviceIp]'
 	description: 'Promote a resinOS device'
@@ -44,6 +25,7 @@ module.exports =
 		Examples:
 
 			$ rdt promote
+			$ rdt promote --port 22222
 	'''
 	primary: true
 	options: []
@@ -77,7 +59,7 @@ module.exports =
 				root@#{options.deviceIp} \
 				-- \"resin-provision\""
 
-			subShellCommand = getSubShellCommand(command)
+			subShellCommand = common.getSubShellCommand(command)
 			child_process.spawn subShellCommand.program, subShellCommand.args,
 				stdio: 'inherit'
 		.nodeify(done)

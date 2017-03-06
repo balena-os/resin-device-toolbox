@@ -15,28 +15,10 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
  */
-var getSubShellCommand;
-
-getSubShellCommand = function(command) {
-  var os;
-  os = require('os');
-  if (os.platform() === 'win32') {
-    return {
-      program: 'cmd.exe',
-      args: ['/s', '/c', command]
-    };
-  } else {
-    return {
-      program: '/bin/sh',
-      args: ['-c', command]
-    };
-  }
-};
-
 module.exports = {
   signature: 'promote [deviceIp]',
   description: 'Promote a resinOS device',
-  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to promote your device.\n\nExamples:\n\n	$ rdt promote',
+  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to promote your device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222',
   primary: true,
   options: [],
   action: function(params, options, done) {
@@ -61,7 +43,7 @@ module.exports = {
         deviceIp: deviceIp
       });
       command = "ssh " + verbose + " -t -p " + options.port + " -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=no root@" + options.deviceIp + " -- \"resin-provision\"";
-      subShellCommand = getSubShellCommand(command);
+      subShellCommand = common.getSubShellCommand(command);
       return child_process.spawn(subShellCommand.program, subShellCommand.args, {
         stdio: 'inherit'
       });
