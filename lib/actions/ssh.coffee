@@ -18,7 +18,9 @@ module.exports =
 	signature: 'ssh [deviceIp]'
 	description: 'Get a shell into a resinOS device'
 	help: '''
-		If you're running Windows, this command only supports `cmd.exe`.
+		Warning: 'rdt ssh' requires an openssh-compatible client to be correctly
+		installed in your shell environment. For more information (including Windows
+		support) please check the README here: https://github.com/resin-os/resin-device-toolbox
 
 		Use this command to get a shell into the running application container of
 		your device.
