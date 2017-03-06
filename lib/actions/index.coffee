@@ -23,3 +23,4 @@ module.exports =
 	scan: require('./scan')
 	configure: require('./configure')
 	flash: require('./flash')
+	promote: require('./promote')

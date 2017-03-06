@@ -50,6 +50,9 @@ capitano.command(actions.flash)
 # ---------- Version Module ----------
 capitano.command(actions.version)
 
+# ---------- Promote Module ---------
+capitano.command(actions.promote)
+
 # ---------- Help Module ----------
 capitano.command(actions.help.help)
 
