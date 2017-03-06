@@ -18,9 +18,14 @@ module.exports =
 	signature: 'promote [deviceIp]'
 	description: 'Promote a resinOS device'
 	help: '''
-		If you're running Windows, this command only supports `cmd.exe`.
+		Warning: 'rdt promote' requires an openssh-compatible client to be correctly
+		installed in your shell environment. For more information (including Windows
+		support) please check the README here: https://github.com/resin-os/resin-device-toolbox
 
 		Use this command to promote your device.
+
+		Promoting a device will provision it onto the Resin platform,
+		converting it from an unmanaged device to a managed device.
 
 		Examples:
 
@@ -44,18 +49,16 @@ module.exports =
 		child_process = require('child_process')
 		Promise = require 'bluebird'
 		_ = require('lodash')
+
 		{ forms } = require('resin-sync')
 		{ common } = require('../utils')
 
-		if not options.port?
-			options.port = 22222
+		options.port ?= 22222
 
 		verbose = if options.verbose then '-vvv' else ''
 
 		Promise.try ->
-			if not params.deviceIp?
-				return forms.selectLocalResinOsDevice()
-			return params.deviceIp
+			return params.deviceIp ?= forms.selectLocalResinOsDevice()
 		.then (deviceIp) ->
 			_.assign(options, { deviceIp })
 

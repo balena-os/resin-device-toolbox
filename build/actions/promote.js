@@ -18,7 +18,7 @@ limitations under the License.
 module.exports = {
   signature: 'promote [deviceIp]',
   description: 'Promote a resinOS device',
-  help: 'If you\'re running Windows, this command only supports `cmd.exe`.\n\nUse this command to promote your device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222\n	$ rdt promote --verbose',
+  help: 'Use this command to promote your device.\n\nPromoting a device will provision it onto the Resin platform,\nconverting it from an unmanaged device to a managed device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222\n	$ rdt promote --verbose',
   primary: true,
   options: [
     {
@@ -45,10 +45,7 @@ module.exports = {
     }
     verbose = options.verbose ? '-vvv' : '';
     return Promise["try"](function() {
-      if (params.deviceIp == null) {
-        return forms.selectLocalResinOsDevice();
-      }
-      return params.deviceIp;
+      return params.deviceIp != null ? params.deviceIp : params.deviceIp = forms.selectLocalResinOsDevice();
     }).then(function(deviceIp) {
       var command, subShellCommand;
       _.assign(options, {
