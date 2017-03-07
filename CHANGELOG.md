@@ -1,3 +1,4 @@
+* rdt ssh: fix Windows instructions
 * rdt promote: implement command
 
 # 0.0.9
