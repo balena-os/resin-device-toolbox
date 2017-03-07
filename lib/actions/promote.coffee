@@ -71,7 +71,7 @@ module.exports =
 				-o UserKnownHostsFile=/dev/null \
 				-o ControlMaster=no \
 				root@#{options.deviceIp} \
-				-- \"resin-provision\""
+				-- \"resin-provision interactive\""
 
 			subShellCommand = common.getSubShellCommand(command)
 			child_process.spawn subShellCommand.program, subShellCommand.args,
