@@ -13,11 +13,18 @@ Click below to see a preview of `rdt push`
 ## Dependencies
 
 * [NodeJS >= 4](https://nodejs.org/en/)
-* [rsync](https://download.samba.org/pub/rsync/rsync.html)
-* [ssh](http://www.openssh.com/)
+  - `ssh`: Any recent version of the OpenSSH ssh client (required by `rdt ssh` and `rdt push`)
+  - `rsync`: >= 2.6.9 (required by `rdt push`)
 
-### Windows
-Please use a `bash`-compatible shell (e.g. Bash for Windows 10 or [`Git Bash`](https://git-for-windows.github.io/). `rdt` has not been tested on the standard Windows cmd shell.
+### Windows Support
+
+`rdt push` and `rdt ssh` have not been thoroughly tested on the standard Windows cmd.exe shell. We recommend using bash (or a similar) shell, like Bash for Windows 10 or [Git for Windows](https://git-for-windows.github.io/).
+
+If you still want to use `cmd.exe` you will have to use a package manager like MinGW or chocolatey. For MinGW the steps are:
+
+1. Install [MinGW](http://www.mingw.org).
+2. Install the `msys-rsync` and `msys-openssh` packages.
+3. Add MinGW to the `%PATH%` if this hasn't been done by the installer already. The location where the binaries are places is usually `C:\MinGW\msys\1.0\bin`, but it can vary if you selected a different location in the installer.
 
 ## Install
 
