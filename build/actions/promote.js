@@ -18,7 +18,7 @@ limitations under the License.
 module.exports = {
   signature: 'promote [deviceIp]',
   description: 'Promote a resinOS device',
-  help: 'Use this command to promote your device.\n\nPromoting a device will provision it onto the Resin platform,\nconverting it from an unmanaged device to a managed device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222\n	$ rdt promote --verbose',
+  help: 'Warning: \'rdt promote\' requires an openssh-compatible client to be correctly\ninstalled in your shell environment. For more information (including Windows\nsupport) please check the README here: https://github.com/resin-os/resin-device-toolbox\n\nUse this command to promote your device.\n\nPromoting a device will provision it onto the Resin platform,\nconverting it from an unmanaged device to a managed device.\n\nExamples:\n\n	$ rdt promote\n	$ rdt promote --port 22222\n	$ rdt promote --verbose',
   primary: true,
   options: [
     {
@@ -51,7 +51,7 @@ module.exports = {
       _.assign(options, {
         deviceIp: deviceIp
       });
-      command = "ssh " + verbose + " -t -p " + options.port + " -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=no root@" + options.deviceIp + " -- \"resin-provision\"";
+      command = "ssh " + verbose + " -t -p " + options.port + " -o LogLevel=ERROR -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ControlMaster=no root@" + options.deviceIp + " -- \"resin-provision interactive\"";
       subShellCommand = common.getSubShellCommand(command);
       return child_process.spawn(subShellCommand.program, subShellCommand.args, {
         stdio: 'inherit'
