@@ -69,8 +69,7 @@ Global Options:
 ## Support
 
 If you're having any problem, please [raise an issue][newissue] on GitHub and
-the Resin.io team will be happy to help. You can also get in touch with us at
-our public [Gitter chat channel](https://gitter.im/resin-io/chat).
+the Resin.io team will be happy to help. You can also get in touch with us in the resin.io [forums](https://forums.resin.io).
 
 ## License
 
