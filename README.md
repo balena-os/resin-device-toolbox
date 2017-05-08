@@ -1,5 +1,8 @@
-#  Resin Device Toolbox - rdt
+#  [Deprecated] Resin Device Toolbox - rdt
 
+### =================================================================
+## __NOTE:__ `rdt` is now deprecated, please use the `local` commands in the [Resin CLI](https://github.com/resin-io/resin-cli).
+### =================================================================
 > The official resinOS command line tool.
 
 Resin Device Toolbox or `rdt` is a collection of utilities that can help you develop resinOS based application containers.
